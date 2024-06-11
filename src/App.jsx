@@ -1,10 +1,15 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { useForm } from 'react-hook-form'
 
 function App() {
-  
+  const {register, handleSubmit, formState:{errors}, reset} = useForm()
+
+
+const onSubmit = (formData)=>{
+console.log(formData);
+reset()
+}
 
   return (
     <>
@@ -26,28 +31,28 @@ function App() {
           </div>
 
           <div className='mt-4 w-10/12 mx-auto'>
-            <form className='p-8 rounded-xl bg-white flex flex-col gap-4 shadow-2xl'>
+            <form onSubmit={handleSubmit(onSubmit)} className='p-8 rounded-xl bg-white flex flex-col gap-4 shadow-2xl'>
 
               <div className='border-2 rounded   h-11 bg-white'>
-              <input type="text" placeholder='First Name' className='p-2 justify-center w-full placeholder-black'/>
+              <input {...register("firstname")} type="text" placeholder='First Name' className='p-2 outline-0 justify-center w-full placeholder-black'/>
               </div>
 
               <div className='border-2 rounded h-11 bg-white'>
-              <input type="text" placeholder='Last Name' className='p-2 justify-center w-full placeholder-black' />
+              <input {...register("lastname")} type="text" placeholder='Last Name' className='outline-0 p-2 justify-center w-full placeholder-black' />
               </div>
 
               <div className='border-2 rounded  h-11 bg-white'>
-              <input type="email" placeholder='Email Address' className='p-2 justify-center w-full placeholder-black'/>
+              <input {...register("email")} type="email" placeholder='Email Address' className=' outline-0 p-2 justify-center w-full placeholder-black'/>
               </div>
               
               <div className='border-2 rounded  h-11 bg-white'>
-              <input type="password" placeholder='Password' className='p-2 justify-center w-full placeholder-black'/>
+              <input {...register("password")} type="password" placeholder='Password' className='p-2 outline-0 justify-center w-full placeholder-black'/>
               </div>
 
               <div className=' rounded  h-11 bg-white shadow-2xl'>
-                <button className='bg-[#32b37b] text-white text-sm w-full h-full rounded'>CLAIM YOUR FREE TRIAL</button>
+                <button type='submit' className='bg-[#32b37b] hover:bg-[#119e61]  text-white text-sm w-full h-full rounded'>CLAIM YOUR FREE TRIAL</button>
               </div>
-
+ 
               <div className='w-12/12 px-2 mx-auto'>
                 <p className='text-center text-xs'>By clicking the button, you are agreeing to our <span className='text-[#ff5757] font-bold'>Terms and Services</span> </p>
               </div>
