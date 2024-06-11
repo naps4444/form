@@ -1,0 +1,13 @@
+*{
+  padding: 0;
+  border: 0;
+}
+body{
+  background-image: url(/intro-component-with-signup-form-master/images/bg-intro-mobile.png);
+  background-color: #ff5757d0;
+}
+@media (min-width: 1024px){
+  body{
+    background-image: url(/intro-component-with-signup-form-master/images/bg-intro-desktop.png);
+  }
+}
