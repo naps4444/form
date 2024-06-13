@@ -3,8 +3,7 @@ import './App.css'
 import { useForm } from 'react-hook-form'
 
 function App() {
-  const {register, handleSubmit, formState:{errors}, reset} = useForm()
-
+  const {register, handleSubmit, formState:{errors}, reset} = useForm();
 
 const onSubmit = (formData)=>{
 console.log(formData);
