@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 function App() {
   const {register, handleSubmit, formState:{errors}, reset} = useForm();
 
-  const [year , setYear] = useState(2024)
+  // const [year , setYear] = useState(2024)
 
 const onSubmit = (formData)=>{
 console.log(formData);
@@ -13,6 +13,8 @@ reset()
 }
 
 const adjustGap = errors ? "gap-10" : "gap-6"
+
+// const fnErrorBorder = errors.firstname ? "border-red-500" : "border-green"
 
   return (
     <>
@@ -41,10 +43,10 @@ const adjustGap = errors ? "gap-10" : "gap-6"
           <div className='mt-4 w-10/12 mx-auto'>
             <form onSubmit={handleSubmit(onSubmit)} className={`p-8 rounded-xl bg-white flex flex-col ${adjustGap}  shadow-2xl `}>
 
-              <div className='border-2 rounded   h-11 bg-white'>
+              <div className={`border-2 rounded h-11 bg-white  ${errors.firstname ? "border-red-500" : "border-2"}  `}>
               <input {...register("firstname", {
                 required: " Firstname is required"
-              })} type="text" placeholder='First Name' className='p-2 outline-0 justify-center w-full placeholder-black mb-2 '/>
+              })} type="text" placeholder={` ${errors.firstname ? " " : "First Name"}`} className={ ` border-white border-1 p-2 outline-0 justify-center w-full placeholder-black mb-2 `   }/>
 
 
 
@@ -53,24 +55,37 @@ const adjustGap = errors ? "gap-10" : "gap-6"
               <p className='text-red-500 text-end'>{errors.firstname.message}</p>}
               </div>
 
-              <div className='border-2 rounded h-11 bg-white'>
+              <div className={`border-2 rounded h-11 bg-white  ${errors.lastname ? "border-red-500" : "border-2"}  `}>
               <input {...register("lastname", {
                 required: " Lastname is required" 
-              })} type="text" placeholder='Last Name' className='outline-0 p-2 justify-center w-full placeholder-black mb-2' />
+              })} type="text" placeholder={` ${errors.lastname ? " " : "Last Name"}`}  className='outline-0 p-2 justify-center w-full placeholder-black mb-2' />
+
+              {errors.lastname && 
+              <p className='text-red-500 text-end'>{errors.lastname.message}</p>}
               </div>
-              <div className='border-2 rounded  h-11 bg-white'>
+
+
+              <div className={`border-2 rounded h-11 bg-white  ${errors.email ? "border-red-500" : "border-2"}  `}>
               <input {...register("email",
                  {required: "Email Address is required",
                   pattern: { 
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                     messsage: " Please enter a valid email address "
                   }
-                 })} type="email" placeholder='Email Address' className=' outline-0 p-2 justify-center w-full placeholder-black mb-2'/>
-              </div>         
-              <div className='border-2 rounded  h-11 bg-white'>
+                 })} type="email" placeholder={` ${errors.email ? " " : "Email"}`}  className=' outline-0 p-2 justify-center w-full placeholder-black mb-2'/>
+
+              {errors.email && 
+              <p className='text-red-500 text-end'>{errors.email.message}</p>}
+              </div> 
+
+
+              <div className={`border-2 rounded h-11 bg-white  ${errors.password ? "border-red-500" : "border-2"}  `}>
               <input {...register("password", {
                 required: " Password is required"
-              })} type="password" placeholder='Password' className='p-2 outline-0 justify-center w-full placeholder-black mb-2'/>
+              })} type="password" placeholder={` ${errors.password ? " " : "Password"}`}  className='p-2 outline-0 justify-center w-full placeholder-black mb-2'/>
+
+              {errors.password && 
+              <p className='text-red-500 text-end'>{errors.password.message}</p>}
               </div>
               <div className=' rounded  h-11 bg-white shadow-2xl'>
                 <button type='submit' className='bg-[#32b37b] hover:bg-[#119e61]  text-white text-sm w-full h-full rounded'>CLAIM YOUR FREE TRIAL</button>
